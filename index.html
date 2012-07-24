@@ -12,6 +12,7 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/prettify.js"></script>
     <script type="text/javascript" src="dist/swfobject/swfobject.js"></script>
+    <script type="text/javascript" src="dist/swfobject/html5shiv.js"></script>
     <style>
       #file-result {
         border: 1px solid lightgray;
@@ -66,7 +67,7 @@
 
           // check if the FileReader API exists... if not then load the Flash object
           if (typeof FileReader !== "function")
-            swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "100px", "100px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
+            swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "80px", "23px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
           else {
             // replace the <object> by a input file
             $('#file-object').replaceWith('<input type="file" id="file-object" value="Load a file" />');
