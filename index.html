@@ -12,6 +12,16 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
     <script type="text/javascript" src="javascripts/prettify.js"></script>
     <script type="text/javascript" src="dist/swfobject/swfobject.js"></script>
+    <style>
+      #file-result {
+        border: 1px solid lightgray;
+        margin-top: 10px;
+        max-height: 300px;
+        overflow: auto;
+        width: 100%;
+        word-wrap: break-word;
+      }
+    </style>
     <title>Local File to DataURI (base64)</title>
   </head>
 
@@ -39,6 +49,7 @@
 
           <p>For the browsers that don't support the FileReader API we'll load the Flash object:</p>
           <object id="file-object"></object>
+          <p>Result:</p>
           <div id="file-result"></div>
           <script type="text/javascript">
           // it's the function called by the swf file
@@ -92,7 +103,7 @@ var Flash = {
 
 // we just want to show the result into the div
 function showResult(b) {
-  $('#result').html(b)
+  $('#file-result').text(b)
 }
 
 // check if the FileReader API exists... if not then load the Flash object
@@ -100,7 +111,8 @@ if (typeof FileReader !== "function")
   swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "100px", "100px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
 else {
   // replace the &lt;object> by a input file
-  $('#file-object').replaceWith('&lt;input type="file" id="file-object" value="Load a file" />').on('change', function(e) {
+  $('#file-object').replaceWith('&lt;input type="file" id="file-object" value="Load a file" />');
+  $('#file-object').on('change', function(e) {
     var files = e.target.files,file;
 
     if (!files || files.length == 0) return;
