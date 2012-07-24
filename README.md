@@ -13,7 +13,7 @@ Customization
 3. Unzip and open a console;
 4. Run the following command:   
 ```
-$ ./bin/mxmlc FileToDataURI.xmxl
+$ ./bin/mxmlc FileToDataURI.mxml
 ```
 
 You'll have some warning messages as below:
