@@ -67,9 +67,10 @@
 
           // check if the FileReader API exists... if not then load the Flash object
           if (typeof FileReader !== "function")
+            // we use 80px by 23px, because we want the object to have the same size than the button
             swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "80px", "23px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
           else {
-            // replace the <object> by a input file
+            // replace the <object> by an input file
             $('#file-object').replaceWith('<input type="file" id="file-object" value="Load a file" />');
             $('#file-object').on('change', function(e) {
               console.log("change");
@@ -80,7 +81,9 @@
 
               var fileReader = new FileReader();
               fileReader.onload = function (e) {
-                showResult(e.target.result);
+                // ATTENTION: to have the same result than the Flash object we need to split
+                // our result to keep only the Base64 part
+                showResult(e.target.result.split(",")[1]);
               };
               fileReader.readAsDataURL(file);
             });
@@ -98,7 +101,7 @@
         <p>The HTML code for the example is very simple -- we use an <strong>object</strong>:</p>
 <pre class="prettyprint lang-html">
 &lt;object id="file-object">&lt;/object>
-&lt;iv id="file-result">&lt;/div>
+&lt;div id="file-result">&lt;/div>
 </pre>
 <p>And the Javascript:</p>
 <pre class="prettyprint lang-js">
@@ -116,11 +119,13 @@ function showResult(b) {
 
 // check if the FileReader API exists... if not then load the Flash object
 if (typeof FileReader !== "function")
-  swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "100px", "100px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
+  // we use 80px by 23px, because we want the object to have the same size than the button
+  swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "80px", "23px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
 else {
-  // replace the &lt;object> by a input file
+  // replace the &lt;object> by an input file
   $('#file-object').replaceWith('&lt;input type="file" id="file-object" value="Load a file" />');
   $('#file-object').on('change', function(e) {
+    // we use the normal way to read a file with FileReader
     var files = e.target.files,file;
 
     if (!files || files.length == 0) return;
@@ -128,12 +133,18 @@ else {
 
     var fileReader = new FileReader();
     fileReader.onload = function (e) {
-      showResult(e.target.result);
+      // ATTENTION: to have the same result than the Flash object we need to split
+      // our result to keep only the Base64 part
+      showResult(e.target.result.split(",")[1]);
     };
     fileReader.readAsDataURL(file);
   });
 }
 </pre>
+
+        <h3>Good to know</h3>
+        <p>The first time that someone will see the page, he'll have to download several files (see <a href="https://github.com/Aymkdn/FileToDataURI">Readme</a>), but then no more download is required so it will be much faster for all the other times.</p>
+        <p>Tested with <strong>IE7, IE8, IE9, Firefox 3.6 and Firefox 14</strong>, but it should work in all browsers if they have at least Flash v10.</p>
       </section>
     </div>
 
