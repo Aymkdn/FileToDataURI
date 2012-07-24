@@ -1,7 +1,8 @@
 FileToDataURI
 =============
 
-A cross-browser solution to read a local file and provide the base64 encoded content
+A cross-browser solution to read a local file and provide the base64 encoded content.
+See the [example](http://aymkdn.github.com/FileToDataURI/) to know how to use it.
 
 Customization
 =============
@@ -22,12 +23,6 @@ You'll have some warning messages as below:
 >  http://fpdownload.adobe.com/pub/swz/flex/4.6.0.23201/mx_4.6.0.23201.swz avec 1 basculement.
 
 But it will work and you'll find the *FileToDataURI.swf* file in your working directory.
-
-How to use
-==========
-
-See the example.
-I use the [swfobject](http://code.google.com/p/swfobject/) from Google to load the swf file when the HTML5 FileReader is not available.
 
 Note
 ====
