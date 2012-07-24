@@ -42,16 +42,19 @@
           <object id="file-object"></object>
           <div id="file-result"></div>
           <script type="text/javascript">
+          // it's the function called by the swf file
           var Flash = {
             getFileData: function(base64) {
               showResult(base64)
             }
           };
 
+          // we just want to show the result into the div
           function showResult(b) {
-            $('#result').html(base64)
+            $('#result').html(b)
           }
 
+          // check if the FileReader API exists... if not then load the Flash object
           if (typeof FileReader !== "function")
             swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "100px", "100px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
           else {
@@ -70,6 +73,45 @@
             });
           }
           </script>
+
+        <h3>Code</h3>
+        <p>The above code is simply:</p>
+<pre class="prettyprint lang-html">
+&lt;object id="file-object">&lt;/object>
+&lt;iv id="file-result">&lt;/div>
+</pre>
+<pre class="prettyprint lang-js">
+// it's the function called by the swf file
+var Flash = {
+  getFileData: function(base64) {
+    showResult(base64)
+  }
+};
+
+// we just want to show the result into the div
+function showResult(b) {
+  $('#result').html(b)
+}
+
+// check if the FileReader API exists... if not then load the Flash object
+if (typeof FileReader !== "function")
+  swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "100px", "100px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
+else {
+  // replace the &lt;object> by a input file
+  $('#file-object').replaceWith('&lt;input type="file" id="file-object" value="Load a file" />').on('change', function(e) {
+    var files = e.target.files,file;
+
+    if (!files || files.length == 0) return;
+    file = files[0];
+
+    var fileReader = new FileReader();
+    fileReader.onload = function (e) {
+      showResult(e.target.result);
+    };
+    fileReader.readAsDataURL(file);
+  });
+}
+</pre>
       </section>
     </div>
 
