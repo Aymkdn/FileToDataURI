@@ -58,7 +58,9 @@
             swfobject.embedSWF("dist/FileToDataURI.swf", "file-object", "100px", "100px", "10", "dist/swfobject/expressInstall.swf", {}, {}, {});
           else {
             // replace the <object> by a input file
-            $('#file-object').replaceWith('<input type="file" id="file-object" value="Load a file" />').on('change', function(e) {
+            $('#file-object').replaceWith('<input type="file" id="file-object" value="Load a file" />');
+            $('#file-object').on('change', function(e) {
+              console.log("change");
               var files = e.target.files,file;
 
               if (!files || files.length == 0) return;
