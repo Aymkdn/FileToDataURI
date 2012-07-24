@@ -27,6 +27,11 @@ You'll have some warning messages as below:
 
 But it will work and you'll find the *FileToDataURI.swf* file in your working directory.
 
+Inspiration
+===========
+
+Thanks to [Country/FileToDataURI](https://github.com/Country/FileToDataURI.as) for giving me the inspiration !
+
 Note
 ====
 
