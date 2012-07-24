@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="File to DataURI (base64) : A cross-browser solution to read a local file and provide the base64 encoded content" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>File to DataURI (base64)</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/Aymkdn/FileToDataURI">View on GitHub</a>
+
+          <h1 id="project_title">File to DataURI (base64)</h1>
+          <h2 id="project_tagline">A cross-browser solution to read a local file and provide the base64 encoded content</h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/Aymkdn/FileToDataURI/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/Aymkdn/FileToDataURI/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h3>Example</h3>
+
+<p>For the browsers that don't support the FileReader API we'll load the Flash object:</p>
+
+<div class="highlight"><pre><span class="kd">var</span> <span class="nx">Flash</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">getFileData</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">base64</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">showResult</span><span class="p">(</span><span class="nx">base64</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="kd">function</span> <span class="nx">showResult</span><span class="p">(</span><span class="nx">b</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#result'</span><span class="p">).</span><span class="nx">html</span><span class="p">(</span><span class="nx">base64</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">FileReader</span> <span class="o">!==</span> <span class="s2">"function"</span><span class="p">)</span>
+  <span class="nx">swfobject</span><span class="p">.</span><span class="nx">embedSWF</span><span class="p">(</span><span class="s2">"dist/FileToDataURI.swf"</span><span class="p">,</span> <span class="s2">"file-object"</span><span class="p">,</span> <span class="s2">"100px"</span><span class="p">,</span> <span class="s2">"100px"</span><span class="p">,</span> <span class="s2">"10.0.0"</span><span class="p">,</span> <span class="s2">"dist/expressInstall.swf"</span><span class="p">,</span> <span class="p">{},</span> <span class="p">{},</span> <span class="p">{});</span>
+<span class="k">else</span> <span class="p">{</span>
+  <span class="c1">// replace the &lt;object&gt; by a input file</span>
+  <span class="nx">$</span><span class="p">(</span><span class="s1">'#file-object'</span><span class="p">).</span><span class="nx">replaceWith</span><span class="p">(</span><span class="s1">'&lt;input type="file" id="file-object" value="Load a file" /&gt;'</span><span class="p">).</span><span class="nx">on</span><span class="p">(</span><span class="s1">'change'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">files</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">files</span><span class="p">,</span><span class="nx">file</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="nx">files</span> <span class="o">||</span> <span class="nx">files</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span><span class="p">;</span>
+    <span class="nx">file</span> <span class="o">=</span> <span class="nx">files</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
+
+    <span class="kd">var</span> <span class="nx">fileReader</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">FileReader</span><span class="p">();</span>
+    <span class="nx">fileReader</span><span class="p">.</span><span class="nx">onload</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nx">showResult</span><span class="p">(</span><span class="nx">e</span><span class="p">.</span><span class="nx">target</span><span class="p">.</span><span class="nx">result</span><span class="p">);</span>
+    <span class="p">};</span>
+    <span class="nx">fileReader</span><span class="p">.</span><span class="nx">readAsDataURL</span><span class="p">(</span><span class="nx">file</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">File to DataURI (base64) maintained by <a href="https://github.com/Aymkdn">Aymkdn</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-30296916-3");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+
+  </body>
+</html>
