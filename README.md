@@ -1,8 +1,9 @@
 FileToDataURI
 =============
 
-A cross-browser solution to read a local file and provide the base64 encoded content.   
-See the [example](http://aymkdn.github.com/FileToDataURI/) to know how to use it.
+A cross-browser solution to read a local file and provide the base64 encoded content with Flash.   
+See the [example](http://aymkdn.github.com/FileToDataURI/) to know how to use it.   
+The example provides a polyfill solution (based on this swf file or on the FileReader API when available).
 
 Customization
 =============
