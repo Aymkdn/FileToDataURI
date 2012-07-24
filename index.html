@@ -50,7 +50,7 @@
 
           // we just want to show the result into the div
           function showResult(b) {
-            $('#result').html(b)
+            $('#file-result').text(b)
           }
 
           // check if the FileReader API exists... if not then load the Flash object
@@ -79,6 +79,7 @@
 &lt;object id="file-object">&lt;/object>
 &lt;iv id="file-result">&lt;/div>
 </pre>
+<p>And the Javascript:</p>
 <pre class="prettyprint lang-js">
 // it's the function called by the swf file
 var Flash = {
