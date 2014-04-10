@@ -73,7 +73,6 @@
             // replace the <object> by an input file
             $('#file-object').replaceWith('<input type="file" id="file-object" value="Load a file" />');
             $('#file-object').on('change', function(e) {
-              console.log("change");
               var files = e.target.files,file;
 
               if (!files || files.length == 0) return;
@@ -130,7 +129,8 @@ else {
 
     if (!files || files.length == 0) return;
     file = files[0];
-
+    // `file` contains lot of informations, like the filename, the size, and so on
+    
     var fileReader = new FileReader();
     fileReader.onload = function (e) {
       // ATTENTION: to have the same result than the Flash object we need to split
