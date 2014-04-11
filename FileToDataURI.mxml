@@ -12,6 +12,7 @@
       import flash.net.FileFilter;
       import flash.events.IOErrorEvent;
       import flash.events.Event;
+      import flash.external.ExternalInterface;
 
       //FileReference Class well will use to load data
       private var fileRef:FileReference;
@@ -24,6 +25,12 @@
       // other example [new FileFilter("Images", "*.jpg;*.png;*.gif")]
       private static const FILE_TYPES:Array = [new FileFilter("All Files", "*.*")];
 
+       // permits to customize the button label
+      private var _buttonLabel:String = ExternalInterface.call("Flash.getButtonLabel");
+      private function returnButtonLabel():String {
+        return _buttonLabel || "Charger Fichier";
+      }
+      
       //called when the user clicks the load file button
       private function onLoadFileClick():void
       {
@@ -68,8 +75,8 @@
         //get the data from the file as a ByteArray
         var data:ByteArray = fileRef.data;
 
-        // call external Javascript function and pass the base64 encoded data
-        ExternalInterface.call(javascriptReceiver, encode(data));
+        // call external Javascript function and pass the base64 encoded data and the filename
+        ExternalInterface.call(javascriptReceiver, encode(data), fileRef.name);
 
         //clean up the FileReference instance
         fileRef = null;
@@ -152,6 +159,6 @@
   ]]>
   </mx:Script>
 
-  <mx:Button label="Load a File" click="onLoadFileClick()"/>
+  <mx:Button label="{returnButtonLabel()}" click="onLoadFileClick()"/>
 
 </mx:Application>

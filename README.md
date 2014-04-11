@@ -5,6 +5,19 @@ A cross-browser solution to read a local file and provide the base64 encoded con
 See the [example](http://aymkdn.github.com/FileToDataURI/) to know how to use it.   
 The example provides a polyfill-like solution (based on this swf file and on the FileReader API when available).
 
+You'll need to define in your JavaScript the below code:
+```
+var Flash = {
+  getFileData: function(base64, filename) {
+    /* this function is mandatory to deal with the base64 and filename for the Flash version (old browser) */
+  },
+  getButtonLabel: function() {
+    return "Load a file";
+    /* you can use this function if you want to customize the button label for the Flash version (old browser) */
+  }
+};
+```
+
 Customization
 =============
 
