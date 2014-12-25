@@ -28,7 +28,7 @@
        // permits to customize the button label
       private var _buttonLabel:String = ExternalInterface.call("Flash.getButtonLabel");
       private function returnButtonLabel():String {
-        return _buttonLabel || "Charger Fichier";
+        return _buttonLabel || "Load a file";
       }
       
       //called when the user clicks the load file button
@@ -75,8 +75,8 @@
         //get the data from the file as a ByteArray
         var data:ByteArray = fileRef.data;
 
-        // call external Javascript function and pass the base64 encoded data and the filename
-        ExternalInterface.call(javascriptReceiver, encode(data), fileRef.name);
+        // call external Javascript function and pass the base64 encoded data
+        ExternalInterface.call(javascriptReceiver, encode(data));
 
         //clean up the FileReference instance
         fileRef = null;

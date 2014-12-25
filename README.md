@@ -8,11 +8,11 @@ The example provides a polyfill-like solution (based on this swf file and on the
 You'll need to define in your JavaScript the below code:
 ```
 var Flash = {
-  getFileData: function(base64, filename) {
-    /* this function is mandatory to deal with the base64 and filename for the Flash version (old browser) */
+  getFileData: function(base64) {
+    /* this function is mandatory to deal with the base64 for the Flash version (old browser) */
   },
   getButtonLabel: function() {
-    return "Load a file";
+    return "Load your file";
     /* you can use this function if you want to customize the button label for the Flash version (old browser) */
   }
 };
