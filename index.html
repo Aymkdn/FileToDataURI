@@ -55,8 +55,8 @@
           <script type="text/javascript">
           // it's the function called by the swf file
           var Flash = {
-            getFileData: function(base64, filename) {
-              showResult(base64, filename)
+            getFileData: function(base64) {
+              showResult(base64)
             },
             getButtonLabel: function() {
               return "Load a file";
@@ -64,8 +64,7 @@
           };
 
           // we just want to show the result into the div
-          function showResult(b,filename) {
-            alert("File '"+filename+"' loaded!");
+          function showResult(b) {
             $('#file-result').text(b)
           }
 
@@ -86,7 +85,7 @@
               fileReader.onload = function (e) {
                 // ATTENTION: to have the same result than the Flash object we need to split
                 // our result to keep only the Base64 part
-                showResult(e.target.result.split(",")[1], file.name);
+                showResult(e.target.result.split(",")[1]);
               };
               fileReader.readAsDataURL(file);
             });
@@ -96,7 +95,7 @@
         <h3>How to use</h3>
         <p>You need to download the <a href="http://code.google.com/p/swfobject/">SWFObject files</a> from Google Code. It will be used to load the Flash if the FileReader API is not available.</p>
         <p>You also need to download <a href="https://github.com/Aymkdn/FileToDataURI/blob/master/FileToDataURI.swf">FileToDataURI.swf</a> (available in my <a href="https://github.com/Aymkdn/FileToDataURI">GitHub repo</a>)</p>
-        <p>Call the swfobject file and jQuery (for this example):</p>
+        <p>Call the swfobject file and jQuery (jQuery is only use for for this example):</p>
         <pre class="prettyprint lang-html">
 &lt;script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js">&lt;/script>
 &lt;script type="text/javascript" src="dist/swfobject/swfobject.js">&lt;/script>
@@ -110,9 +109,9 @@
 <pre class="prettyprint lang-js">
 // it's the function called by the swf file
 var Flash = {
-  /* Flash.getFileData() is called after the file has been read with two parameters */
-  getFileData: function(base64, filename) {
-    showResult(base64, filename)
+  /* Flash.getFileData() is called after the file has been read */
+  getFileData: function(base64) {
+    showResult(base64)
   },
   /* getButtonLabel() permits to define another label for the "Load a file" button in the Flash version */
   getButtonLabel: function() {
@@ -121,8 +120,7 @@ var Flash = {
 };
 
 // we just want to show the result into the div
-function showResult(b,filename) {
-  alert("File '"+filename+"' loaded!");
+function showResult(b) {
   $('#file-result').text(b)
 }
 
@@ -143,7 +141,7 @@ else {
     fileReader.onload = function (e) {
       // ATTENTION: to have the same result than the Flash object we need to split
       // our result to keep only the Base64 part
-      showResult(e.target.result.split(",")[1], file.name);
+      showResult(e.target.result.split(",")[1]);
     };
     fileReader.readAsDataURL(file);
   });
