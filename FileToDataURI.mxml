@@ -6,7 +6,7 @@
        * Created by Aymeric (@aymkdn), inspired by https://github.com/Country/FileToDataURI.as and http://www.flex-tutorial.fr
        * Contact: http://kodono.info
        * Documentation: https://github.com/Aymkdn/FileToDataURI
-       * Licence: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+       * Licence: MIT License
        */
       import flash.net.FileReference;
       import flash.net.FileFilter;
