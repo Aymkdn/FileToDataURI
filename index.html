@@ -135,8 +135,8 @@ else {
     var files = e.target.files,file;
 
     if (!files || files.length == 0) return;
-    file = files[0];
-
+    file = files[0]; // in `file` you have the file properties like "name" and "size"
+    
     var fileReader = new FileReader();
     fileReader.onload = function (e) {
       // ATTENTION: to have the same result than the Flash object we need to split
